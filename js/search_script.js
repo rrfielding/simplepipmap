@@ -52,7 +52,7 @@ function pointsInCircle(circle, meters_user_set ) {
             // The user has selected
             if (distance_from_layer_circle <= meters_user_set) {
                 counter_points_in_circle += 1;
-		points_in_circle_names += '<li>'+layer.popupContent + '</li>';
+		points_in_circle_names += '<li>'+layer.feature.properties.Title + '</li>';
             }
         });
 
@@ -226,23 +226,9 @@ $('select').change(function() {
 });
 
 //---------------------------------------------------------------------
-/* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
-
-var customLayer = L.geoJson(null, {
-  onEachFeature: function(feature, layer) {
-    layer.bindPopup(feature.properties.Title);
-  }
- });
- var runLayer = omnivore.csv('./js/data.csv', null, customLayer)
- .on('ready', function() {
-  map.fitBounds(runLayer.getBounds());
- }).addTo(map);
-
-// controlLayers.addOverlay(customLayer, 'Markers from data.csv');
-
-//---------------------------------------------------------------------
 // This loops through the data in our JSON file
 // And puts it on the map
+//---------------------------------------------------------------------
 
 /*
 _.each(json_data, function(num) {
@@ -352,36 +338,7 @@ $('#geocoder').geocodify({
 });
 
 
-// Base map
-
-/*
-//var layer = new L.StamenTileLayer('toner-background');
-var layer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-	maxZoom: 19,
-	attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-});
-
-
-var map = new L.Map('map', {
-    //center: new L.LatLng(42,-93.3),
-    center: new L.LatLng(37.866676, -122.277469),
-    minZoom: 4,
-    maxZoom: 19,
-    zoom: 13,
-    keyboard: false,
-    boxZoom: false,
-    doubleClickZoom: false,
-    scrollWheelZoom: false //,
-    //maxBounds: [[33.154799,-116.586914],[50.190089,-77.563477]]
-});
-
-// Add base layer to group
-map.addLayer(layer);
-
-// Add our markers in our JSON file on the map
-map.addLayer(json_group);
-*/
-
+// GEOCODE based on map click
 map.on('click', function(e) {
    //alert("Lat, Lon : " + e.latlng.lat + ", " + e.latlng.lng)
    geocodePlaceMarkersOnMap2(e.latlng);
