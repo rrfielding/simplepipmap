@@ -6,10 +6,12 @@ var circle;
 var search_marker;
 
 // Marker icon
+/*
 var search_icon = L.AwesomeMarkers.icon({
     icon: 'icon-circle',
     color: 'red'
 });
+*/
 
 
 // Convert miles to meters to set radius of circle
