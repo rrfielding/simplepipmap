@@ -5,15 +5,6 @@ var circle;
 // Marker in the middle of the circle
 var search_marker;
 
-// Marker icon
-/*
-var search_icon = L.AwesomeMarkers.icon({
-    icon: 'icon-circle',
-    color: 'red'
-});
-*/
-
-
 // Convert miles to meters to set radius of circle
 function milesToMeters(miles) {
     return miles * 1069.344;
@@ -70,23 +61,6 @@ function pointsInCircle(circle, meters_user_set ) {
         $('#json_one_results').html( counter_points_in_circle );
 
         $('#json_names').html( points_in_circle_names );
-
-/*
-	if (counter_points_in_circle > 0) {
-		var theRad = $('#radius-selected').val();
-		if (theRad == '0.25') {
-			map.setZoom(17);
-		} else if (theRad == '0.5') {
-			map.setZoom(16);
-		} else if (theRad == '1.5') {
-			map.setZoom(14);
-		} else if (theRad == '2') {
-			map.setZoom(13);
-		} else {
-			map.setZoom(15);
-		}
-	}
-*/
 
     }
 // Close pointsInCircle
@@ -225,72 +199,8 @@ $('select').change(function() {
     changeCircleRadius();
 });
 
-//---------------------------------------------------------------------
-// This loops through the data in our JSON file
-// And puts it on the map
-//---------------------------------------------------------------------
-
-/*
-_.each(json_data, function(num) {
-    var dataLat = num['latitude'];
-    var dataLong = num['longitude'];
-    var popupContent = num['name'];
-
-    // Add to our marker
-    var marker_location = new L.LatLng(dataLat, dataLong);
-
-    // Options for our circle marker
-    var layer_marker = L.circleMarker(marker_location, {
-        radius: 7,
-        fillColor: "#984ea3",
-        color: "#FFFFFF",
-        weight: 1,
-        opacity: 1,
-        fillOpacity: 0.8
-    });
-    layer_marker.popupContent = popupContent;
-
-    // Add events to marker
-    layer_marker.on({
-        // What happens when mouse hovers markers
-        mouseover: function(e) {
-            var layer_marker = e.target;
-	    var popup = L.popup()
-   		.setLatLng(e.latlng) 
-   		//.setContent('Popup')
-		.setContent(popupContent)
-   		.openOn(map);
-            layer_marker.setStyle({
-                radius: 8,
-                fillColor: "#FFFFFF",
-                color: "#000000",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 1
-            });
-        },
-        // What happens when mouse leaves the marker
-        mouseout: function(e) {
-            var layer_marker = e.target;
-            layer_marker.setStyle({
-                radius: 7,
-                fillColor: "#984ea3",
-                color: "#FFFFFF",
-                weight: 1,
-                opacity: 1,
-                fillOpacity: 0.8
-            });
-        }
-    // Close event add for markers
-    });
-
-    json_group.addLayer(layer_marker);
-// Close for loop
-}, this);
-*/
-
-
 // jQuery Geocodify
+// Bounding coords should include continental US
 var maxY = 45;
 var minY = 32;
 var minX = -125;
@@ -313,13 +223,6 @@ $('#geocoder').geocodify({
     },
     initialText: 'Address, place name, city, etc...',
     regionBias: 'US',
-    // Lat, long information for Bay area
-    /*
-	viewportBias: new google.maps.LatLngBounds(
-        new google.maps.LatLng(40.217754, -96.459961),
-        new google.maps.LatLng(43.749935, -90.175781)
-    ),
-	*/
     width: 300,
     height: 26,
     fontSize: '14px',
