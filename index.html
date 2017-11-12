@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>leaflet-map-simple</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="utf-8">
+
+  <!-- Load Leaflet: instructions at http://leafletjs.com/download.html -->
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.1.0/dist/leaflet.css"
+  integrity="sha384-Zh+y1U8o6/7ni8Mp8szvUfZjGeKKS10CGH3IlD6L1X+XwzYgQ1llOjw/Wslc0cma"
+  crossorigin="anonymous">
+  <script src="https://unpkg.com/leaflet@1.1.0/dist/leaflet.js"
+  integrity="sha384-6rCYjRgWDEI2RlZxiVihj1WIZB/uvFiRCGpavTVgFrSPDL0Bk1AiqCW+mmv5h0LP"
+  crossorigin="anonymous"></script>
+  <!-- Load Omnivore plugin to convert CSV to GeoJSON format -->
+  <script src='https://api.tiles.mapbox.com/mapbox.js/plugins/leaflet-omnivore/v0.3.1/leaflet-omnivore.min.js'></script>
+
+  <!-- Position the map and title with Cascading Style Sheet (.css) -->
+  <link rel="stylesheet" href="./styles.css" />
+
+  </style>
+</head>
+<body>
+
+  <!-- Display the map and title with HTML division tags  -->
+  <!-- Legend -->
+        <div id="legend">
+                <h3>Find Places within Walking Distance</h3>
+                <p>
+                Enter an address or click on the map to find places within the search radius.
+                <br>
+                <li><em>Once displayed, you can also drag the search marker.</em></li>
+                <p>
+
+                <div id="geocoder_box" class="geocoder">
+                        <form id="geocoder" class="geocoder"></form>
+                </div>
+
+                <div>Search radius:</div>
+                <div class="form">
+                        <select id="radius-selected" name="radius">
+                                <option value="0.25">0.25 miles</option>
+                                <option value="0.5" selected>0.5 miles</option>
+                                <option value="1">1 miles</option>
+                                <option value="1.5">1.5 miles</option>
+                                <option value="2">2 miles</option>
+                        </select>
+                </div>
+
+                <h3>Results</h3>
+                <p>
+                <span id="json_one_results_title">
+                <span id="json_one_results">0</span>
+                <span id="json_one_title">providers</span></span> are within the given radius.</p>
+                <span id="json_names"></span>
+
+                <hr>
+                <h5>About</h5>
+                <p>Original code by <a href="https://github.com/csessig86/leaflet-markers-within-radius" target="_blank">Chris Essig</a>.</p>
+        </div>
+
+        <!-- Map -->
+
+  <div id="map"></div>
+
+  <!-- Create the map content with JavaScript (.js) -->
+  <script>
+
+  /* Set up the map with initial center and zoom level */
+  var map = L.map('map', {
+    center: [41.77, -72.69], // EDIT latitude, longitude to re-center map
+    zoom: 12,  // EDIT from 1 to 18 -- decrease to zoom out, increase to zoom in
+    scrollWheelZoom: false
+  });
+
+  /* Control panel to display map layers */
+  // var controlLayers = L.control.layers( null, null, {
+  //  position: "topright",
+  //  collapsed: false
+  // }).addTo(map);
+
+  /* Carto light-gray basemap tiles with labels */
+  var light = L.tileLayer('https://cartodb-basemaps-{s}.global.ssl.fastly.net/light_all/{z}/{x}/{y}.png', {
+    attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a>, &copy; <a href="https://carto.com/attribution">CARTO</a>'
+  }).addTo(map); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
+  // controlLayers.addBaseLayer(light, 'Carto Light basemap');
+
+  /* Stamen colored terrain basemap tiles with labels */
+  var terrain = L.tileLayer('https://stamen-tiles.a.ssl.fastly.net/terrain/{z}/{x}/{y}.png', {
+    attribution: 'Map tiles by <a href="http://stamen.com">Stamen Design</a>, under <a href="http://creativecommons.org/licenses/by/3.0">CC BY 3.0</a>. Data by <a href="http://openstreetmap.org">OpenStreetMap</a>, under <a href="http://www.openstreetmap.org/copyright">ODbL</a>.'
+  }); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
+  // controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
+
+  /* Display a blue point marker with pop-up text */
+  L.marker([41.77, -72.69]).addTo(map) // EDIT latitude, longitude to re-position marker
+  .bindPopup("Insert pop-up text here"); // EDIT pop-up text message
+
+  /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
+  var customLayer = L.geoJson(null, {
+  onEachFeature: function(feature, layer) {
+    layer.bindPopup(feature.properties.Title);
+  }
+ });
+ var runLayer = omnivore.csv('data.csv', null, customLayer)
+ .on('ready', function() {
+  map.fitBounds(runLayer.getBounds());
+ }).addTo(map);
+ controlLayers.addOverlay(customLayer, 'Markers from data.csv');
+
+  </script>
+</body>
+</html>

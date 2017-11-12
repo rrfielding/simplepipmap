@@ -1,0 +1,11 @@
+Title,Address,Latitude,Longitude,maddress,status,geocoder
+Wah Fay Liquors,2101 8th Ave Oakland CA 94606,37.7983669,-122.2448899,"2101 8th Ave, Oakland, CA 94606, USA",Match,Google
+Vision Liquor,1615 Macarthur Blvd Oakland CA 94602,37.800329,-122.223667,"1615 MacArthur Blvd, Oakland, CA 94602, USA",Match,Google
+Souza's Liquors,394 12th Oakland CA 94607,37.8025964,-122.2703481,"394 12th St, Oakland, CA 94607, USA",Partial Match,Google
+Tk Liquors,1500 23th Ave Oakland CA 94606,37.7842527,-122.2351478,"1500 23rd Ave, Oakland, CA 94606, USA",Partial Match,Google
+Quadriga Wines Inc,6193 Ridgemont Dr Oakland CA 94619,37.7843414,-122.1671988,"6193 Ridgemont Dr, Oakland, CA 94619, USA",Match,Google
+Bev Mo,525 W. Embarcadero Oakland CA 94607,37.7959797,-122.2790176,"525 Embarcadero West, Oakland, CA 94607, USA",Partial Match,Google
+Fairfax Liquor,5403 Foothill Blvd Oakland CA 94601,37.7724053,-122.1983483,"5403 Foothill Blvd, Oakland, CA 94601, USA",Match,Google
+Saleen Market,1200 78th Ave Oakland CA 94621,37.7555478,-122.1863089,"1200 78th Ave, Oakland, CA 94621, USA",Match,Google
+Park Liquors,828 Franklin St Oakland CA 94607,37.8002274,-122.2719881,"828 Franklin St, Oakland, CA 94607, USA",Match,Google
+Los Camellos,5913 International Blvd Oakland CA 94621,37.7648862,-122.1994052,"5913 International Blvd, Oakland, CA 94621, USA",Match,Google
