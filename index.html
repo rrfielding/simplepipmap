@@ -69,7 +69,23 @@
 
                 <hr>
                 <h5>About</h5>
-                <p>Original code by <a href="https://github.com/csessig86/leaflet-markers-within-radius" target="_blank">Chris Essig</a>.</p>
+                <p>
+		This is a simple hack of <a href="https://github.com/JackDougherty/leaflet-map-simple" target="_blank">https://github.com/JackDougherty/leaflet-map-simple</a> and
+		<a href="https://github.com/csessig86/leaflet-markers-within-radius" target="_blank">https://github.com/csessig86/leaflet-markers-within-radius</a>
+
+		</p>
+		<p>
+		To customize:
+		<ul>
+		<li>You only need to make changes in index.html file and replace the data.csv file with your data in same format.
+		<li>Update data.csv to be your data but in same format with same headers.
+		<li>Get a google maps api key and update the key= like in index.html.
+		<li>Find the line in index.html that reads "center:" and change that to the lat/lon for your map center.
+		<li>Set the default zoom level to one appropriate for your data. With the map centered on your map center point and with your zoom level all points should display in the map. If not you may have errors.
+		<li>You may want to update the select list of radii options.
+		</ul>
+		</p>
+
         </div>
 
         <!-- Map -->
@@ -105,12 +121,6 @@
   }); // EDIT - insert or remove ".addTo(map)" before last semicolon to display by default
 
   controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
-
-/* Display a blue point marker with pop-up text */
-/*
-  L.marker([41.77, -72.69]).addTo(map) // EDIT latitude, longitude to re-position marker
-  .bindPopup("Insert pop-up text here"); // EDIT pop-up text message
-*/
 
   /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
