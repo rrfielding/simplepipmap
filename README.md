@@ -1,6 +1,6 @@
 # simplepipmap
 
-[This](https://pattyf.github.io/simplepipmap) is a hack of http://jackdougherty.github.io/leaflet-map-simple
+[This](https://rrfielding.github.io/simplepipmap/) is a hack of http://jackdougherty.github.io/leaflet-map-simple
 and
 https://github.com/csessig86/leaflet-markers-within-radius
 
