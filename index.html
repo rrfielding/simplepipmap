@@ -38,7 +38,7 @@
   <!-- Display the map and title with HTML division tags  -->
   <!-- Legend -->
         <div id="legend">
-                <h3>Find Places within Walking Distance</h3>
+                <h3>Where Can I Walk</h3>
                 <p>
                 Enter an address or click on the map to find places within the search radius.
                 <br>
@@ -88,7 +88,7 @@
   /* Control panel to display map layers */
   var controlLayers = L.control.layers( null, null, {
    position: "topright",
-   collapsed: false
+   collapsed: true
   }).addTo(map);
 
   /* Carto light-gray basemap tiles with labels */
