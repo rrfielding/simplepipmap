@@ -105,7 +105,7 @@
 
   controlLayers.addBaseLayer(terrain, 'Stamen Terrain basemap');
 
-  /* Upload Latitude/Longitude markers from data.csv file, show Title in pop-up, and override initial center and zoom to fit all in map */
+  /* Upload Latitude/Longitude markers from data.csv file, show Title and Website in pop-up, and override initial center and zoom to fit all in map */
   var customLayer = L.geoJson(null, {
   onEachFeature: function(feature, layer) {
     layer.bindPopup(feature.properties.Title);
