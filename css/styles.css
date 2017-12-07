@@ -6,7 +6,7 @@ html {
 }
 
 body {
-  font-family: "Times New Roman", Georgia, Serif;
+  font-family: "Goudy Bookletter 1911", sans-serif;
   font-size: 13px;
   font-weight: normal;
   line-height: 18px;
@@ -40,8 +40,9 @@ body {
 }
 
 #json_one_results {
-    font-weight: bold;
-    font-size: 20px;
+  font-family: "Goudy Bookletter 1911", sans-serif;  
+  font-weight: bold
+    font-size: 30px;
 }
 
 /* Geocoder */
